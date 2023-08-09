@@ -43,7 +43,7 @@ const Register = () => {
         return toast.error("Registration failed", toastOptions);
       }
     } catch (error) {
-      toast.error("Server connection error", toastOptions);
+      toast.error("Error connecting to server", toastOptions);
       return;
     } finally {
       setLoading(false);
