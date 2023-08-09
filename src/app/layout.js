@@ -7,9 +7,9 @@ import Footer from "./components/Footer";
 import { AuthProvider } from "./context/auth";
 import "antd/dist/reset.css";
 const inter = Inter({ subsets: ["latin"] });
-export const metadata = {
-  title: "ChronoCraze",
-};
+// export const metadata = {
+//   title: "ChronoCraze",
+// };
 
 const mulish = Mulish({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
