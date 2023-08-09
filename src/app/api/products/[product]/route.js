@@ -4,8 +4,40 @@ import { NextResponse } from "next/server";
 import slugify from "slugify";
 connect();
 
+export async function PUT(req, { params }) {
+  try {
+    const { product } = params;
+    const _id = product;
+    const { name, description, price, quantity, category, shipping } =
+      await req.json();
+    const updated = await Product.findByIdAndUpdate(
+      _id,
+      {
+        name,
+        slug: slugify(name),
+        description,
+        price,
+        quantity,
+        category,
+        shipping,
+      },
+      { new: true }
+    );
+    return NextResponse.json({
+      updated,
+      msg: "successfully updated",
+      status: 200,
+    });
+  } catch (error) {
+    return NextResponse.json({
+      msg: "server error: ",
+    });
+  }
+}
+
 export async function GET(req, { params }) {
   try {
+    console.log(params);
     const { slug } = params;
     const find = await Product.findOne({ slug: params.product });
     return NextResponse.json({

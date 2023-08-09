@@ -3,11 +3,13 @@ import React from "react";
 import { Select } from "antd";
 const { Option } = Select;
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AdminMenu from "@/app/components/AdminMenu";
 const SingleProduct = ({ params }) => {
+  const router = useRouter();
   const toastOptions = {
     position: "top-center",
     autoClose: 2000,
@@ -48,7 +50,7 @@ const SingleProduct = ({ params }) => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/products", {
+      const response = await axios.put(`/api/products/${id}`, {
         name,
         description,
         price,
@@ -56,8 +58,9 @@ const SingleProduct = ({ params }) => {
         category,
         shipping,
       });
-      if (response.data.status === 201) {
+      if (response.data.status === 200) {
         toast.success("Category added successfully!", toastOptions);
+        router.push("/dashboard/admin/products");
       } else {
         toast.error("Error updating category!", toastOptions);
       }
