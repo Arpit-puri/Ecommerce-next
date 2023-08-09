@@ -4,7 +4,10 @@ export default function Home() {
     <>
       <main suppressHydrationWarning>
         <h1>Changes on way</h1>
-        <h2>Main page</h2>
+        <h3>Only admin pages have been done</h3>
+        <p>To access them sign in with:</p>
+        <p>email:abc@abc</p>
+        <p>password:abc</p>
       </main>
     </>
   );
