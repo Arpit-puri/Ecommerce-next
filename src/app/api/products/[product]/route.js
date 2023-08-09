@@ -37,7 +37,6 @@ export async function PUT(req, { params }) {
 
 export async function GET(req, { params }) {
   try {
-    console.log(params);
     const { slug } = params;
     const find = await Product.findOne({ slug: params.product });
     return NextResponse.json({
@@ -47,6 +46,23 @@ export async function GET(req, { params }) {
   } catch (error) {
     return NextResponse.json({
       msg: "server error: ",
+    });
+  }
+}
+
+export async function DELETE(req, { params }) {
+  try {
+    const { product } = params;
+    await Product.findByIdAndDelete(product);
+    return NextResponse.json({
+      msg: "Topic deleted",
+      status: 200,
+    });
+  } catch (error) {
+    return NextResponse.json({
+      error: error.message,
+      status: 500,
+      msg: "Error in updating category",
     });
   }
 }

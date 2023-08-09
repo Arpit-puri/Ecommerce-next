@@ -72,7 +72,11 @@ const SingleProduct = ({ params }) => {
   //Delete product function
   const handleDelete = async (e) => {
     try {
-      const category= axios.delete(`/api/products/${id}`)
+      const response = await axios.delete(`/api/products/${id}`);
+      if (response.data.status === 200) {
+        toast.success("Product deleted successfully", toastOptions);
+        router.push("/dashboard/admin/products");
+      }
     } catch (error) {
       toast.error("Something went wrong", toastOptions);
     }

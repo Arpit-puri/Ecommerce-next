@@ -4,11 +4,12 @@ import AdminMenu from "@/app/components/AdminMenu";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Select } from "antd";
 const { Option } = Select;
 
 const Product = () => {
+  const router = useRouter();
   const toastOptions = {
     position: "top-center",
     autoClose: 2000,
@@ -43,6 +44,7 @@ const Product = () => {
       console.log(response);
       if (response.data.status === 201) {
         toast.success("Category added successfully!", toastOptions);
+        router.push("/dashboard/admin/products");
       } else {
         toast.error("Error updating category!", toastOptions);
       }
