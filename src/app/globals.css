@@ -83,6 +83,7 @@ blockquote {
 .register {
   min-height: 77vh;
   display: flex;
+  padding: 1.5px;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
