@@ -8,7 +8,7 @@ import { AuthProvider } from "./context/auth";
 import "antd/dist/reset.css";
 const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
-  title: "Shopting",
+  title: "ChronoCraze",
 };
 
 const mulish = Mulish({

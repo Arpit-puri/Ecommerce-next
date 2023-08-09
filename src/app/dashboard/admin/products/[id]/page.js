@@ -1,14 +1,14 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import AdminMenu from "@/app/components/AdminMenu";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
-import Image from "next/image";
+import React from "react";
 import { Select } from "antd";
 const { Option } = Select;
-
-const Product = () => {
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import AdminMenu from "@/app/components/AdminMenu";
+const SingleProduct = ({ params }) => {
+  console.log(params.id);
   const toastOptions = {
     position: "top-center",
     autoClose: 2000,
@@ -28,8 +28,18 @@ const Product = () => {
   const [quantity, setQuantity] = useState("");
   const [shipping, setShipping] = useState("");
 
-  //create product function
-  const handleCreate = async (e) => {
+  //get Single category
+  const getSingle = async () => {
+    try {
+      const response = await axios.get(`/api/products/${params.id}`);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //Update product function
+  const handleUpdate = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post("/api/products", {
@@ -70,14 +80,15 @@ const Product = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <div className="container-fluid m-3 p-3">
         <div className="row">
           <div className="col-md-3">
             <AdminMenu />
           </div>
+
           <div className="col-md-9">
-            <h1>Create Products</h1>
+            <h1 className="pb-2">Update Products</h1>
             <div className="m1 w-75">
               <Select
                 bordered={false}
@@ -148,8 +159,11 @@ const Product = () => {
                 </Select>
               </div>
               <div className="mb-3">
-                <button className="btn btn-primary" onClick={handleCreate}>
-                  CREATE PRODUCT
+                <button className="btn btn-primary" onClick={getSingle}>
+                  response
+                </button>
+                <button className="btn btn-primary" onClick={handleUpdate}>
+                  Update PRODUCT
                 </button>
               </div>
             </div>
@@ -157,8 +171,8 @@ const Product = () => {
         </div>
       </div>
       <ToastContainer />
-    </div>
+    </>
   );
 };
 
-export default Product;
+export default SingleProduct;

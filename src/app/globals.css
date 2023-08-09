@@ -99,3 +99,10 @@ blockquote {
   height: 70vh;
   flex-direction: column;
 }
+
+/* Product */
+
+.product-link {
+  text-decoration: none !important;
+  color: black !important;
+}

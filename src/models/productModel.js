@@ -20,20 +20,15 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
     category: {
-      type: mongoose.ObjectId,
-      ref: "category",
+      type: String,
       required: true,
     },
     quantity: {
       type: Number,
       required: true,
     },
-    photo: {
-      type: Buffer,
-      contentType: String,
-    },
     shipping: {
-      type: boolean,
+      type: Boolean,
     },
   },
   { timestamps: true }

@@ -6,11 +6,11 @@ connect();
 
 export async function GET(req, { params }) {
   try {
-    const { id } = params;
-    const find = await Product.findOne({ slug: id });
+    const { slug } = params;
+    const find = await Product.findOne({ slug: params.product });
     return NextResponse.json({
       find,
-      msg: "find the category",
+      msg: "found the category",
     });
   } catch (error) {
     return NextResponse.json({

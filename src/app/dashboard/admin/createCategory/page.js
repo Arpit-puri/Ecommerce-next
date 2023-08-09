@@ -6,7 +6,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import Modal from "antd/es/modal/Modal";
-import { extractStyle } from "@ant-design/cssinjs";
 import CategoryForm from "@/app/components/CategoryForm";
 
 const CreateCategory = () => {
@@ -94,10 +93,10 @@ const CreateCategory = () => {
       if (response.data.status === 200) {
         setCategory(response.data.category);
       } else {
-        toast.error("Can't create category", toastOptions);
+        toast.error("Can't get category", toastOptions);
       }
     } catch (error) {
-      toast.error("Can't create category", toastOptions);
+      toast.error("Can't getAll category", toastOptions);
     }
   };
 

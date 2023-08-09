@@ -36,7 +36,7 @@ function Header() {
         <div className="container-fluid" suppressHydrationWarning>
           <Link href="/" legacyBehavior>
             <a className="navbar-head">
-              <GiShoppingBag /> Shopting
+              <GiShoppingBag /> ChronoCraze
             </a>
           </Link>
           <button

@@ -7,11 +7,18 @@ connect();
 
 export async function POST(req) {
   try {
-    //photoo
+    //photoo not added yet
     const reqBody = await req.json();
-    const { name, slug, description, price, category, quantity, shipping } =
-      reqBody;
-    if (!description || !price || !category || !quantity || !shipping || name) {
+
+    const { name, description, price, category, quantity, shipping } = reqBody;
+    if (
+      !description ||
+      !price ||
+      !category ||
+      !quantity ||
+      !shipping ||
+      !name
+    ) {
       return NextResponse.json({
         error: error.message,
         status: 401,
@@ -26,14 +33,16 @@ export async function POST(req) {
       category,
       quantity,
       shipping,
-      photo,
     });
     await saved.save();
+
     return NextResponse.json({
+      status: 201,
       msg: "Saved",
       saved,
     });
   } catch (error) {
+    console.log(error);
     return NextResponse.json({
       error: error.message,
       status: 500,
