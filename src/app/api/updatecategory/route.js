@@ -5,7 +5,6 @@ import slugify from "slugify";
 connect();
 
 export async function POST(req, res) {
-  console.log("Update");
   try {
     const reqBody = await req.json();
     const { name } = reqBody;
@@ -42,7 +41,6 @@ export async function POST(req, res) {
 
 export async function GET(req) {
   try {
-    console.log("GET category");
     const category = await Category.find({});
     return NextResponse.json({
       status: 200,
@@ -57,5 +55,3 @@ export async function GET(req) {
     });
   }
 }
-
-
