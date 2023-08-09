@@ -33,7 +33,7 @@ const SingleProduct = ({ params }) => {
   const getSingle = async () => {
     try {
       const response = await axios.get(`/api/products/${params.id}`);
-      // console.log(response);
+
       setName(response.data.find.name);
       setPrice(response.data.find.price);
       setQuantity(response.data.find.quantity);
@@ -66,6 +66,15 @@ const SingleProduct = ({ params }) => {
       }
     } catch {
       toast.error("something went wrong", toastOptions);
+    }
+  };
+
+  //Delete product function
+  const handleDelete = async (e) => {
+    try {
+      const category= axios.delete(`/api/products/${id}`)
+    } catch (error) {
+      toast.error("Something went wrong", toastOptions);
     }
   };
 
@@ -171,9 +180,12 @@ const SingleProduct = ({ params }) => {
                   <Option value="1">Yes</Option>
                 </Select>
               </div>
-              <div className="mb-3">
-                <button className="btn btn-primary" onClick={handleUpdate}>
+              <div className="mb-3 flex">
+                <button className="btn btn-primary pr-2" onClick={handleUpdate}>
                   Update PRODUCT
+                </button>
+                <button className="btn btn-danger mx-2" onClick={handleDelete}>
+                  Delete PRODUCT
                 </button>
               </div>
             </div>
