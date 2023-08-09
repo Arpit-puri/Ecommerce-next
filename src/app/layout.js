@@ -7,9 +7,6 @@ import Footer from "./components/Footer";
 import { AuthProvider } from "./context/auth";
 import "antd/dist/reset.css";
 const inter = Inter({ subsets: ["latin"] });
-// export const metadata = {
-//   title: "ChronoCraze",
-// };
 
 const mulish = Mulish({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
@@ -21,9 +18,13 @@ export default function RootLayout({ children }) {
     <html lang="en" className={mulish.className}>
       <AuthProvider>
         <body>
-          <Header />
+          <div>
+            <Header />
+          </div>
           <div className="screen"> {children} </div>
-          <Footer />
+          <div>
+            <Footer />
+          </div>
         </body>
       </AuthProvider>
     </html>

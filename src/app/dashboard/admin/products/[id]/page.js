@@ -8,7 +8,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AdminMenu from "@/app/components/AdminMenu";
 const SingleProduct = ({ params }) => {
-  console.log(params.id);
   const toastOptions = {
     position: "top-center",
     autoClose: 2000,
@@ -27,14 +26,21 @@ const SingleProduct = ({ params }) => {
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [shipping, setShipping] = useState("");
-
+  const [id, setId] = useState("");
   //get Single category
   const getSingle = async () => {
     try {
       const response = await axios.get(`/api/products/${params.id}`);
-      console.log(response);
+      // console.log(response);
+      setName(response.data.find.name);
+      setPrice(response.data.find.price);
+      setQuantity(response.data.find.quantity);
+      setShipping(response.data.find.shipping);
+      setCategory(response.data.find.category);
+      setId(response.data.find._id);
+      setDescription(response.data.find.description);
     } catch (error) {
-      console.log(error);
+      toast.error("Server error", toastOptions);
     }
   };
 
@@ -50,7 +56,6 @@ const SingleProduct = ({ params }) => {
         category,
         shipping,
       });
-      console.log(response);
       if (response.data.status === 201) {
         toast.success("Category added successfully!", toastOptions);
       } else {
@@ -78,6 +83,9 @@ const SingleProduct = ({ params }) => {
   useEffect(() => {
     getAll();
   }, []);
+  useEffect(() => {
+    getSingle();
+  }, []);
 
   return (
     <>
@@ -99,6 +107,7 @@ const SingleProduct = ({ params }) => {
                 onChange={(value) => {
                   setCategory(value);
                 }}
+                value={category}
               >
                 {categories?.map((c) => (
                   <Option key={c._id} value={c.name}>
@@ -153,15 +162,13 @@ const SingleProduct = ({ params }) => {
                   onChange={(value) => {
                     setShipping(value);
                   }}
+                  value={shipping ? "Yes" : "No"}
                 >
                   <Option value="0">No</Option>
                   <Option value="1">Yes</Option>
                 </Select>
               </div>
               <div className="mb-3">
-                <button className="btn btn-primary" onClick={getSingle}>
-                  response
-                </button>
                 <button className="btn btn-primary" onClick={handleUpdate}>
                   Update PRODUCT
                 </button>
