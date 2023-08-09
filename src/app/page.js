@@ -8,6 +8,7 @@ export default function Home() {
         <p>To access them sign in with:</p>
         <p>email:abc@abc</p>
         <p>password:abc</p>
+        <p>After entering them navigate yourself to dashboard</p>
       </main>
     </>
   );
