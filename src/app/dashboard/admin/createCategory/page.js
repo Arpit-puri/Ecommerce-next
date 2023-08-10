@@ -38,7 +38,6 @@ const CreateCategory = () => {
         name: updatedName,
       });
       if (response.data.status === 200) {
-        console.log(response.data.updated);
         toast.success("Updated successfully", toastOptions);
         setSelected(null);
         setUpdatedName("");
@@ -48,7 +47,6 @@ const CreateCategory = () => {
         toast.error("Error updating category", toastOptions);
       }
     } catch (error) {
-      console.log(error);
       toast.error("Something went wrong!", toastOptions);
     }
   };
@@ -64,7 +62,6 @@ const CreateCategory = () => {
         toast.error("Error Deleting category", toastOptions);
       }
     } catch (error) {
-      console.log(error);
       toast.error("Something went wrong!", toastOptions);
     }
   };

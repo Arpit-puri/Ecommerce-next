@@ -47,7 +47,6 @@ const Product = () => {
         shipping,
         photo: base64,
       });
-      console.log(response);
       if (response.data.status === 201) {
         toast.success("Category added successfully!", toastOptions);
         router.push("/dashboard/admin/products");

@@ -24,10 +24,8 @@ const Newproduct = () => {
   const getAll = async () => {
     try {
       const response = await axios.get("/api/products");
-      console.log(response);
       setProducts(response.data.products);
     } catch (error) {
-      console.log(error);
       toast.error("Failed to get all products", toastOptions);
     }
   };

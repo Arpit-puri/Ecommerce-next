@@ -30,7 +30,6 @@ export default function Home() {
   const getAllP = async () => {
     try {
       const response = await axios.get("/api/products");
-      console.log(response);
       setProducts(response.data.products);
     } catch (error) {
       toast.error("Unexpected error: Can't get all products", toastOptions);
@@ -38,9 +37,11 @@ export default function Home() {
   };
 
   useEffect(() => {
-    getAllP();
-  }, []);
-
+    if (!check.length || !radio.length) getAllP();
+  }, [check.length, radio.length]);
+  useEffect(() => {
+    if (check.length || radio.length) filterProducts();
+  }, [check, radio]);
   //get all category
   useEffect(() => {
     getAll();
@@ -52,10 +53,10 @@ export default function Home() {
       if (response.data.status === 200) {
         setCategory(response.data.category);
       } else {
-        toast.error("Can't get category", toastOptions);
+        toast.error("Can't get products", toastOptions);
       }
     } catch (error) {
-      toast.error("Can't getAll category", toastOptions);
+      toast.error("Can't getAll products", toastOptions);
     }
   };
 
@@ -69,16 +70,26 @@ export default function Home() {
     }
     setCheck(all);
   };
-
+  //get filtered products
+  const filterProducts = async () => {
+    try {
+      const response = await axios.post(`/api/filter`, { check, radio });
+      console.log(response);
+      setProducts(response.data?.products);
+    } catch (error) {
+      toast.error("Can't filter products", toastOptions);
+    }
+  };
   return (
     <>
       <main>
-        <div className="row mt-3">
-          <div className="col-md-2">
+        <div className="row mt-4">
+          <div className="col-md-2 ">
             <h4 className="text-center">Filters By category</h4>
-            <div className="d-flex flex-column">
+            <div className="d-flex flex-column mt-2">
               {category?.map((c) => (
                 <Checkbox
+                  className="mx-2"
                   key={c._id}
                   onChange={(e) => handleFilter(e.target.checked, c._id)}
                 >
@@ -90,7 +101,7 @@ export default function Home() {
             <div className="d-flex flex-column">
               <Radio.Group onChange={(e) => setRadio(e.target.value)}>
                 {Prices?.map((p) => (
-                  <div key={p._id}>
+                  <div key={p._id} className="mx-2">
                     <Radio value={p.array}>{p.name}</Radio>
                   </div>
                 ))}
@@ -126,7 +137,10 @@ export default function Home() {
                       />
                       <div className="card-body">
                         <h5 className="card-title">{p.name}</h5>
-                        <p className="card-text">{p.description}</p>
+                        <p className="card-text">
+                          {p.description.substring(0, 30)}...{" "}
+                        </p>
+                        <p className="card-text">₹ {p.price}</p>
                         <button className="btn btn-primary">
                           More details
                         </button>
