@@ -5,6 +5,8 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import Link from "next/link";
 import Checkbox from "antd/es/checkbox/Checkbox";
+import Image from "next/image";
+import pic from "/public/images/pexels-pixabay-277390.jpg";
 export default function Home() {
   const toastOptions = {
     position: "top-center",
@@ -94,6 +96,13 @@ export default function Home() {
                     className="product-link"
                   >
                     <div className="card m-2" style={{ width: "18rem" }}>
+                      <Image
+                        src={pic}
+                        width={200}
+                        height={200}
+                        alt="Image not availabe"
+                        className="card-img-top"
+                      />
                       <div className="card-body">
                         <h5 className="card-title">{p.name}</h5>
                         <p className="card-text">{p.description}</p>
