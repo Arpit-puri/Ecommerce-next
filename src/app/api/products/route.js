@@ -2,7 +2,6 @@ import { connect } from "@/dbConfig/db";
 import { NextResponse } from "next/server";
 import Product from "@/models/productModel";
 import slugify from "slugify";
-import img from "/public/images/raido.jpg";
 connect();
 
 export async function POST(req) {
