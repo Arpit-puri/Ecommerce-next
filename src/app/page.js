@@ -5,8 +5,8 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import Link from "next/link";
 import Checkbox from "antd/es/checkbox/Checkbox";
+import { Radio } from "antd";
 import Image from "next/image";
-import pic1 from "/public/images/raido.jpg";
 export default function Home() {
   const toastOptions = {
     position: "top-center",
