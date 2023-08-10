@@ -97,7 +97,7 @@ export default function Home() {
                   >
                     <div className="card m-2" style={{ width: "18rem" }}>
                       <Image
-                        src={pic1}
+                        src={p.photo}
                         width={200}
                         height={200}
                         alt="Image not availabe"

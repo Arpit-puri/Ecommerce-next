@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import AdminMenu from "@/app/components/AdminMenu";
 import Link from "next/link";
+import Image from "next/image";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -41,9 +42,9 @@ const Newproduct = () => {
         <div className="col-md-3">
           <AdminMenu />
         </div>
-        <div className="col-md-9">
+        <div className="col-md-9 ">
           <h1 className="text-center">All Products List</h1>
-          <div className="flex">
+          <div className="flex flex-wrap">
             {products?.map((p) => (
               <>
                 <Link
@@ -52,6 +53,13 @@ const Newproduct = () => {
                   className="product-link"
                 >
                   <div className="card m-2" style={{ width: "18rem" }}>
+                    <Image
+                      src={p.photo}
+                      className="card-img-top"
+                      alt="Not available"
+                      width={200}
+                      height={200}
+                    />
                     <div className="card-body">
                       <h5 className="card-title">{p.name}</h5>
                       <p className="card-text">{p.description}</p>

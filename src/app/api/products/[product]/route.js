@@ -8,7 +8,7 @@ export async function PUT(req, { params }) {
   try {
     const { product } = params;
     const _id = product;
-    const { name, description, price, quantity, category, shipping } =
+    const { name, description, price, quantity, category, shipping, photo } =
       await req.json();
     const updated = await Product.findByIdAndUpdate(
       _id,
@@ -20,6 +20,7 @@ export async function PUT(req, { params }) {
         quantity,
         category,
         shipping,
+        photo,
       },
       { new: true }
     );

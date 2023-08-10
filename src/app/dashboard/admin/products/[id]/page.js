@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AdminMenu from "@/app/components/AdminMenu";
+import Image from "next/image";
 const SingleProduct = ({ params }) => {
   const router = useRouter();
   const toastOptions = {
@@ -25,6 +26,7 @@ const SingleProduct = ({ params }) => {
   const [category, setCategory] = useState();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [photo, setPhoto] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [shipping, setShipping] = useState("");
@@ -49,6 +51,7 @@ const SingleProduct = ({ params }) => {
   //Update product function
   const handleUpdate = async (e) => {
     e.preventDefault();
+    const base64 = await convertToBase64(photo);
     try {
       const response = await axios.put(`/api/products/${id}`, {
         name,
@@ -57,6 +60,7 @@ const SingleProduct = ({ params }) => {
         quantity,
         category,
         shipping,
+        photo: base64,
       });
       if (response.data.status === 200) {
         toast.success("Category added successfully!", toastOptions);
@@ -132,6 +136,41 @@ const SingleProduct = ({ params }) => {
                 ))}
               </Select>
               <div className="mb-3">
+                <label className="btn btn-outline-secondary col-md-12">
+                  {photo ? photo.name : "Upload Photo"}
+                  <input
+                    type="file"
+                    name="photo"
+                    accept="image/*"
+                    onChange={(e) => setPhoto(e.target.files[0])}
+                    hidden
+                  />
+                </label>
+              </div>
+              <div className="mb-3">
+                {photo ? (
+                  <div className="text-center">
+                    <Image
+                      src={URL.createObjectURL(photo)}
+                      alt="product_photo"
+                      height={200}
+                      width={200}
+                      className="img img-responsive"
+                    />
+                  </div>
+                ) : (
+                  <div className="text-center">
+                    <Image
+                      src={`/api/v1/product/product-photo/${id}`}
+                      alt="product_photo"
+                      height={200}
+                      width={200}
+                      className="img img-responsive"
+                    />
+                  </div>
+                )}
+              </div>
+              <div className="mb-3">
                 <input
                   type="text"
                   value={name}
@@ -200,5 +239,15 @@ const SingleProduct = ({ params }) => {
     </>
   );
 };
+function convertToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      resolve(fileReader.result);
+    };
+    fileReader.onerror = () => reject(error);
+  });
+}
 
 export default SingleProduct;

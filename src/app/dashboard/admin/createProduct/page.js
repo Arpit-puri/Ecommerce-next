@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Select } from "antd";
+import Image from "next/image";
 const { Option } = Select;
 
 const Product = () => {
@@ -21,6 +22,7 @@ const Product = () => {
     theme: "light",
   };
 
+  const [photo, setPhoto] = useState("");
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState();
   const [name, setName] = useState("");
@@ -32,6 +34,9 @@ const Product = () => {
   //create product function
   const handleCreate = async (e) => {
     e.preventDefault();
+
+    const base64 = await convertToBase64(photo);
+
     try {
       const response = await axios.post("/api/products", {
         name,
@@ -40,6 +45,7 @@ const Product = () => {
         quantity,
         category,
         shipping,
+        photo: base64,
       });
       console.log(response);
       if (response.data.status === 201) {
@@ -97,6 +103,31 @@ const Product = () => {
                   </Option>
                 ))}
               </Select>
+              <div className="mb-3">
+                <label className="btn btn-outline-secondary col-md-12">
+                  {photo ? photo.name : "Upload Photo"}
+                  <input
+                    type="file"
+                    name="photo"
+                    accept="image/*"
+                    onChange={(e) => setPhoto(e.target.files[0])}
+                    hidden
+                  />
+                </label>
+              </div>
+              <div className="mb-3">
+                {photo && (
+                  <div className="text-center">
+                    <Image
+                      src={URL.createObjectURL(photo)}
+                      alt="product_photo"
+                      height={200}
+                      width={200}
+                      className="img img-responsive"
+                    />
+                  </div>
+                )}
+              </div>
               <div className="mb-3">
                 <input
                   type="text"
@@ -162,5 +193,14 @@ const Product = () => {
     </div>
   );
 };
-
+function convertToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      resolve(fileReader.result);
+    };
+    fileReader.onerror = () => reject(error);
+  });
+}
 export default Product;

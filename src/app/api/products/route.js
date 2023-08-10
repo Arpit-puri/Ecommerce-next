@@ -2,7 +2,7 @@ import { connect } from "@/dbConfig/db";
 import { NextResponse } from "next/server";
 import Product from "@/models/productModel";
 import slugify from "slugify";
-
+import img from "/public/images/raido.jpg";
 connect();
 
 export async function POST(req) {
@@ -10,7 +10,9 @@ export async function POST(req) {
     //photoo not added yet
     const reqBody = await req.json();
 
-    const { name, description, price, category, quantity, shipping } = reqBody;
+    const { name, description, price, category, quantity, shipping, photo } =
+      reqBody;
+    console.log(photo);
     if (
       !description ||
       !price ||
@@ -33,6 +35,7 @@ export async function POST(req) {
       category,
       quantity,
       shipping,
+      photo,
     });
     await saved.save();
 
