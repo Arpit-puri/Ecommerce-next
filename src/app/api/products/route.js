@@ -11,7 +11,6 @@ export async function POST(req) {
 
     const { name, description, price, category, quantity, shipping, photo } =
       reqBody;
-    console.log(photo);
     if (
       !description ||
       !price ||
@@ -44,7 +43,6 @@ export async function POST(req) {
       saved,
     });
   } catch (error) {
-    console.log(error);
     return NextResponse.json({
       error: error.message,
       status: 500,

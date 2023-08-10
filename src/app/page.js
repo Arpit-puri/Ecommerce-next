@@ -37,8 +37,10 @@ export default function Home() {
   };
 
   useEffect(() => {
-    if (!check.length || !radio.length) getAllP();
-  }, [check.length, radio.length]);
+    if (!check.length || !radio.length) {
+      getAllP();
+    }
+  }, []);
   useEffect(() => {
     if (check.length || radio.length) filterProducts();
   }, [check, radio]);
@@ -89,7 +91,7 @@ export default function Home() {
             <div className="d-flex flex-column mt-2">
               {category?.map((c) => (
                 <Checkbox
-                  className="mx-2"
+                  className="m-1"
                   key={c._id}
                   onChange={(e) => handleFilter(e.target.checked, c._id)}
                 >
