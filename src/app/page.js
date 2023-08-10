@@ -6,7 +6,7 @@ import axios from "axios";
 import Link from "next/link";
 import Checkbox from "antd/es/checkbox/Checkbox";
 import Image from "next/image";
-import pic from "/public/images/pexels-pixabay-277390.jpg";
+import pic1 from "/public/images/raido.jpg";
 export default function Home() {
   const toastOptions = {
     position: "top-center",
@@ -97,7 +97,7 @@ export default function Home() {
                   >
                     <div className="card m-2" style={{ width: "18rem" }}>
                       <Image
-                        src={pic}
+                        src={pic1}
                         width={200}
                         height={200}
                         alt="Image not availabe"
