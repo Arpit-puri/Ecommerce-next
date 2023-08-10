@@ -44,7 +44,7 @@ const Newproduct = () => {
         </div>
         <div className="col-md-9 ">
           <h1 className="text-center">All Products List</h1>
-          <div className="flex flex-wrap">
+          <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <>
                 <Link
