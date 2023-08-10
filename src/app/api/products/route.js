@@ -6,7 +6,6 @@ connect();
 
 export async function POST(req) {
   try {
-    //photoo not added yet
     const reqBody = await req.json();
 
     const { name, description, price, category, quantity, shipping, photo } =

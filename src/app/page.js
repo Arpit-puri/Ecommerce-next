@@ -26,6 +26,16 @@ export default function Home() {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
 
+  //get total count
+  const getTotal=async()=>{
+    try {
+      const response =await axios.get('/api/')
+    } catch (error) {
+      toast.error(error,toastOptions);
+    }
+  }
+
+
   //get All products
   const getAllP = async () => {
     try {
