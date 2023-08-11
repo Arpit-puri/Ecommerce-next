@@ -5,9 +5,12 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { Prices } from "./components/Prices";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Checkbox, Radio } from "antd";
 import Image from "next/image";
+
 export default function Home() {
+  const router = useRouter();
   const toastOptions = {
     position: "top-center",
     autoClose: 5000,
@@ -140,11 +143,11 @@ export default function Home() {
             <div className="d-flex flex-wrap flex-col">
               {products?.map((p) => (
                 <>
-                  <Link
+                  {/* <Link
                     key={p._id}
                     href={`/single/${p.slug}`}
                     className="product-link"
-                  >
+                  > */}
                     <div className="card m-2" style={{ width: "18rem" }}>
                       <Image
                         src={p.photo}
@@ -159,7 +162,12 @@ export default function Home() {
                           {p.description.substring(0, 30)}...{" "}
                         </p>
                         <p className="card-text">₹ {p.price}</p>
-                        <button className="btn btn-primary">
+                        <button
+                          className="btn btn-primary"
+                          onClick={(e) => {
+                            router.push(`/single/${p.slug}`);
+                          }}
+                        >
                           More details
                         </button>
                         <button className="btn btn-secondary m-1">
@@ -167,7 +175,7 @@ export default function Home() {
                         </button>
                       </div>
                     </div>
-                  </Link>
+                  {/* </Link> */}
                 </>
               ))}
             </div>

@@ -2,7 +2,10 @@ import React from 'react'
 
 const Single = () => {
   return (
-    <div>Single</div>
+    <>
+    <h1>Product Detail</h1>
+    
+    </>
   )
 }
 

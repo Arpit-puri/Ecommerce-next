@@ -58,15 +58,12 @@ function Header() {
               suppressHydrationWarning
             >
               <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-                <SeachInput />
+                <div className=" pr-4 mx-5">
+                  <SeachInput />
+                </div>
                 <li className="nav-item">
                   <Link href="/" legacyBehavior>
                     <a className="nav-link">Home</a>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link href="/category" legacyBehavior>
-                    <a className="nav-link">Category</a>
                   </Link>
                 </li>
                 {!auth.user ? (
