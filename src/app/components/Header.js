@@ -7,7 +7,10 @@ import { useAuth } from "../context/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SeachInput from "./SeachInput";
+import { CartProvider, useCart } from "../context/cart";
+
 function Header() {
+  const [cart] = useCart();
   const [auth, setAuth] = useAuth();
   const toastOptions = {
     position: "top-center",
@@ -99,7 +102,7 @@ function Header() {
                 )}
                 <li className="nav-item">
                   <Link href="/cart" legacyBehavior>
-                    <a className="nav-link">Cart(0)</a>
+                    <a className="nav-link">Cart ({cart?.length})</a>
                   </Link>
                 </li>
               </ul>

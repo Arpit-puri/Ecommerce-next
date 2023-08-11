@@ -8,9 +8,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Checkbox, Radio } from "antd";
 import Image from "next/image";
+import { CartProvider, useCart } from "./context/cart";
 
 export default function Home() {
   const router = useRouter();
+
   const toastOptions = {
     position: "top-center",
     autoClose: 5000,
@@ -21,6 +23,7 @@ export default function Home() {
     progress: undefined,
     theme: "light",
   };
+  const [cart, setCart] = useCart();
   const [check, setCheck] = useState([]);
   const [radio, setRadio] = useState([]);
   const [page, setPage] = useState(1);
@@ -143,39 +146,48 @@ export default function Home() {
             <div className="d-flex flex-wrap flex-col">
               {products?.map((p) => (
                 <>
-                  {/* <Link
+                  <Link
                     key={p._id}
                     href={`/single/${p.slug}`}
                     className="product-link"
-                  > */}
-                    <div className="card m-2" style={{ width: "18rem" }}>
-                      <Image
-                        src={p.photo}
-                        width={200}
-                        height={200}
-                        alt="Image not availabe"
-                        className="card-img-top"
-                      />
-                      <div className="card-body">
-                        <h5 className="card-title">{p.name}</h5>
-                        <p className="card-text">
-                          {p.description.substring(0, 30)}...{" "}
-                        </p>
-                        <p className="card-text">₹ {p.price}</p>
-                        <button
-                          className="btn btn-primary"
-                          onClick={(e) => {
-                            router.push(`/single/${p.slug}`);
-                          }}
-                        >
-                          More details
-                        </button>
-                        <button className="btn btn-secondary m-1">
-                          Add to cart
-                        </button>
-                      </div>
+                  >
+                  <div className="card m-2" style={{ width: "18rem" }}>
+                    <Image
+                      src={p.photo}
+                      width={200}
+                      height={200}
+                      alt="Image not availabe"
+                      className="card-img-top"
+                    />
+                    <div className="card-body">
+                      <h5 className="card-title">{p.name}</h5>
+                      <p className="card-text">
+                        {p.description.substring(0, 30)}...{" "}
+                      </p>
+                      <p className="card-text">₹ {p.price}</p>
+                      <button
+                        className="btn btn-primary"
+                        onClick={(e) => {
+                          router.push(`/single/${p.slug}`);
+                        }}
+                      >
+                        More details
+                      </button>
+                      <button
+                        className="btn btn-secondary m-1"
+                        onClick={(e) => {
+                          setCart([...cart, p]);
+                          toast.success(
+                            "Item added successfully",
+                            toastOptions
+                          );
+                        }}
+                      >
+                        Add to cart
+                      </button>
                     </div>
-                  {/* </Link> */}
+                  </div>
+                  </Link>
                 </>
               ))}
             </div>
