@@ -54,7 +54,7 @@ export default function Home() {
     if (!check.length || !radio.length) {
       getAllP();
     }
-  }, []);
+  }, [check.length, radio.length]);
 
   useEffect(() => {
     if (check.length || radio.length) filterProducts();

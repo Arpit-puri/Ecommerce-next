@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import { useAuth } from "../context/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SeachInput from "./SeachInput";
 function Header() {
   const [auth, setAuth] = useAuth();
   const toastOptions = {
@@ -57,6 +58,7 @@ function Header() {
               suppressHydrationWarning
             >
               <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                <SeachInput />
                 <li className="nav-item">
                   <Link href="/" legacyBehavior>
                     <a className="nav-link">Home</a>

@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import { Mulish } from "next/font/google";
 import Footer from "./components/Footer";
 import { AuthProvider } from "./context/auth";
+import { SearchProvider } from "./context/search";
 import "antd/dist/reset.css";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,15 +18,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={mulish.className}>
       <AuthProvider>
-        <body>
-          <div>
-            <Header />
-          </div>
-          <div className="screen"> {children} </div>
-          <div>
-            <Footer />
-          </div>
-        </body>
+        <SearchProvider>
+          <body>
+            <div>
+              <Header />
+            </div>
+            <div className="screen"> {children} </div>
+            <div>
+              <Footer />
+            </div>
+          </body>
+        </SearchProvider>
       </AuthProvider>
     </html>
   );
