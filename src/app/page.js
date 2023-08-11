@@ -146,11 +146,11 @@ export default function Home() {
             <div className="d-flex flex-wrap flex-col">
               {products?.map((p) => (
                 <>
-                  <Link
+                  {/* <Link
                     key={p._id}
                     href={`/single/${p.slug}`}
                     className="product-link"
-                  >
+                  > */}
                   <div className="card m-2" style={{ width: "18rem" }}>
                     <Image
                       src={p.photo}
@@ -187,7 +187,7 @@ export default function Home() {
                       </button>
                     </div>
                   </div>
-                  </Link>
+                  {/* </Link> */}
                 </>
               ))}
             </div>
