@@ -38,7 +38,6 @@ export async function PUT(req, { params }) {
 
 export async function GET(req, { params }) {
   try {
-    const { slug } = params;
     const find = await Product.findOne({ slug: params.product });
     return NextResponse.json({
       find,

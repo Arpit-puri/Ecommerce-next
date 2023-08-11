@@ -27,22 +27,26 @@ export default function Home() {
   const [category, setCategory] = useState([]);
 
   //get total count
-  const getTotal=async()=>{
+  const getTotal = async () => {
     try {
-      const response =await axios.get('/api/')
+      const response = await axios.get("/api/productcount");
+      setTotal(response.data.total);
     } catch (error) {
-      toast.error(error,toastOptions);
+      toast.error(error, toastOptions);
     }
-  }
-
+  };
 
   //get All products
   const getAllP = async () => {
     try {
+      setLoading(true);
       const response = await axios.get("/api/products");
+      setLoading(false);
       setProducts(response.data.products);
     } catch (error) {
+      setLoading(true);
       toast.error("Unexpected error: Can't get all products", toastOptions);
+      setLoading(false);
     }
   };
 
@@ -51,12 +55,15 @@ export default function Home() {
       getAllP();
     }
   }, []);
+
   useEffect(() => {
     if (check.length || radio.length) filterProducts();
   }, [check, radio]);
+
   //get all category
   useEffect(() => {
     getAll();
+    getTotal();
   }, []);
 
   const getAll = async () => {
@@ -86,7 +93,6 @@ export default function Home() {
   const filterProducts = async () => {
     try {
       const response = await axios.post(`/api/filter`, { check, radio });
-      console.log(response);
       setProducts(response.data?.products);
     } catch (error) {
       toast.error("Can't filter products", toastOptions);
@@ -131,12 +137,12 @@ export default function Home() {
 
           <div className="col-md-9">
             <h1 className="text-center">All products</h1>
-            <div className="d-flex flex-wrap">
+            <div className="d-flex flex-wrap flex-col">
               {products?.map((p) => (
                 <>
                   <Link
                     key={p._id}
-                    href={`/dashboard/admin/products/${p.slug}`}
+                    href={`/single/${p.slug}`}
                     className="product-link"
                   >
                     <div className="card m-2" style={{ width: "18rem" }}>
@@ -164,6 +170,19 @@ export default function Home() {
                   </Link>
                 </>
               ))}
+            </div>
+            <div className="m-2 p-3">
+              {products && products.length < total && (
+                <button
+                  className="btn btn-warning"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setPage(page + 1);
+                  }}
+                >
+                  {loading ? "Loading..." : "Load More"}
+                </button>
+              )}
             </div>
           </div>
         </div>

@@ -34,9 +34,7 @@ const Product = () => {
   //create product function
   const handleCreate = async (e) => {
     e.preventDefault();
-
     const base64 = await convertToBase64(photo);
-
     try {
       const response = await axios.post("/api/products", {
         name,

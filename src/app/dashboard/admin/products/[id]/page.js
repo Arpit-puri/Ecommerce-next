@@ -21,7 +21,6 @@ const SingleProduct = ({ params }) => {
     progress: undefined,
     theme: "light",
   };
-
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState();
   const [name, setName] = useState("");

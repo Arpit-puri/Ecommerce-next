@@ -41,15 +41,8 @@ const Dashboard = () => {
         </>
       ) : (
         <>
-          <div
-            className="d-flex justify-content-center"
-            classname="min-h-screen"
-          >
-            <div
-              className="spinner-border"
-              classname="min-h-screen"
-              role="status"
-            />
+          <div className="d-flex justify-content-center min-h-screen">
+            <div className="spinner-border min-h-screen" role="status" />
           </div>
         </>
       )}
