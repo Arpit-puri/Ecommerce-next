@@ -9,11 +9,7 @@ const Footer = () => {
           <div className="footer" suppressHydrationWarning>
             <h4 className="text-center">All rights reserved &copy; A.P</h4>
             <div className="text-center mt-3" suppressHydrationWarning>
-              <Link href="/about">About us</Link>
-              {" | "}
               <Link href="/contact">Contact us</Link>
-              {" | "}
-              <Link href="/policy">Privacy Policy</Link>
             </div>
           </div>
         </footer>
