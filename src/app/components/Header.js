@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SeachInput from "./SeachInput";
 import { CartProvider, useCart } from "../context/cart";
+import { Badge } from "antd";
 
 function Header() {
   const [cart] = useCart();
@@ -101,9 +102,11 @@ function Header() {
                   </>
                 )}
                 <li className="nav-item">
-                  <Link href="/cart" legacyBehavior>
-                    <a className="nav-link">Cart ({cart?.length})</a>
-                  </Link>
+                  <Badge count={cart?.length} showZero>
+                    <Link href="/cart" legacyBehavior>
+                      <a className="nav-link ">Cart</a>
+                    </Link>
+                  </Badge>
                 </li>
               </ul>
             </div>

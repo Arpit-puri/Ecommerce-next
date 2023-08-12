@@ -5,19 +5,18 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
-
+import { useCart } from "@/app/context/cart";
 const ProductDetail = ({ params }) => {
   const toastOptions = {
     position: "top-center",
-    autoClose: 5000,
+    autoClose: 1000,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
     draggable: true,
     progress: undefined,
     theme: "light",
   };
-
+  const [cart, setCart] = useCart();
   const [product, setProduct] = useState({});
 
   //get-prducts
@@ -53,7 +52,14 @@ const ProductDetail = ({ params }) => {
           <h6 className="m-3">Description: {product.description}</h6>
           <h6 className="m-3">Price: ₹{product.price}</h6>
           <h6 className="m-3">Category: {product.category}</h6>
-          <button className="btn btn-secondary m-1">Add to cart</button>
+          <button
+            className="btn btn-secondary m-1"
+            onClick={(e) => {
+              setCart([...cart, product]);
+            }}
+          >
+            Add to cart
+          </button>
         </div>
       </div>
       <ToastContainer />

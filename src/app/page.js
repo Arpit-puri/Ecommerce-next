@@ -4,18 +4,17 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { Prices } from "./components/Prices";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Checkbox, Radio } from "antd";
 import Image from "next/image";
-import { CartProvider, useCart } from "./context/cart";
+import { useCart } from "./context/cart";
 
 export default function Home() {
   const router = useRouter();
 
   const toastOptions = {
     position: "top-center",
-    autoClose: 5000,
+    autoClose: 1000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -146,11 +145,6 @@ export default function Home() {
             <div className="d-flex flex-wrap flex-col">
               {products?.map((p) => (
                 <>
-                  {/* <Link
-                    key={p._id}
-                    href={`/single/${p.slug}`}
-                    className="product-link"
-                  > */}
                   <div className="card m-2" style={{ width: "18rem" }}>
                     <Image
                       src={p.photo}
@@ -177,17 +171,13 @@ export default function Home() {
                         className="btn btn-secondary m-1"
                         onClick={(e) => {
                           setCart([...cart, p]);
-                          toast.success(
-                            "Item added successfully",
-                            toastOptions
-                          );
+                          localStorage.setItem('cart', JSON.stringify([...cart, p]));
                         }}
                       >
                         Add to cart
                       </button>
                     </div>
                   </div>
-                  {/* </Link> */}
                 </>
               ))}
             </div>

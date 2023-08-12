@@ -10,7 +10,7 @@ const UserMenu = () => {
             href="/dashboard/user/profile"
             class="list-group-item list-group-item-action"
           >
-            Profile
+            Update Profile
           </Link>
           <Link
             href="/dashboard/user/orders"

@@ -3,10 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import UserMenu from "../components/UserMenu";
 import { useAuth } from "../context/auth";
+
 const Dashboard = () => {
   const router = useRouter();
   const [auth] = useAuth();
-  const [check, setCheck] = useState(false);
+  const [check, setCheck] = useState();
   useEffect(() => {
     const data = localStorage.getItem("auth");
     const parseData = JSON.parse(data);
