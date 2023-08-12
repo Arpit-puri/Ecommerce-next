@@ -12,12 +12,6 @@ const UserMenu = () => {
           >
             Update Profile
           </Link>
-          <Link
-            href="/dashboard/user/orders"
-            class="list-group-item list-group-item-action"
-          >
-            Orders Given
-          </Link>
         </div>
       </div>
     </>

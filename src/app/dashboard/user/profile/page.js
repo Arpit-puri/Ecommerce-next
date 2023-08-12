@@ -85,8 +85,7 @@ const UserProfile = () => {
                   <input
                     type="text"
                     value={name}
-                    autoComplete="off"
-                    required
+                    autoComplete="off"                        
                     onChange={(e) => setName(e.target.value)}
                     className="form-control"
                     id="exampleInputName"
@@ -98,8 +97,7 @@ const UserProfile = () => {
                   </label>
                   <input
                     type="email"
-                    value={email}
-                    required
+                    value={email}                   
                     autoComplete="off"
                     onChange={(e) => setEmail(e.target.value)}
                     className="form-control"
@@ -119,8 +117,7 @@ const UserProfile = () => {
                   </label>
                   <input
                     type="number"
-                    autoComplete="off"
-                    required
+                    autoComplete="off"                    
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     className="form-control"
@@ -147,8 +144,7 @@ const UserProfile = () => {
                   </label>
                   <input
                     type="text"
-                    value={address}
-                    required
+                    value={address}                    
                     onChange={(e) => setAddress(e.target.value)}
                     className="form-control"
                     id="exampleInputAddress"
