@@ -35,6 +35,7 @@ const Dashboard = () => {
                   <h3 className="p-3">Name: {auth?.user?.name}</h3>
                   <h3 className="p-3">E-mail: {auth?.user?.email}</h3>
                   <h3 className="p-3">Address: {auth?.user?.address}</h3>
+                  <h3 className="p-3">Phone Number: {auth?.user?.phone}</h3>
                 </div>
               </div>
             </div>

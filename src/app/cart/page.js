@@ -9,6 +9,7 @@ const CartPage = () => {
   const router = useRouter();
   const [cart, setCart] = useCart();
   const [auth, setAuth] = useAuth();
+  
   useEffect(() => {
     const data = localStorage.getItem("auth");
     if (data === null) {
@@ -16,6 +17,7 @@ const CartPage = () => {
     }
     return;
   }, []);
+  
   const removeCartItem = (pid) => {
     let mycart = [...cart];
 

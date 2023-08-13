@@ -25,12 +25,6 @@ const AdminMenu = () => {
           >
             Products
           </Link>
-          <Link
-            href="/dashboard/admin/users"
-            class="list-group-item list-group-item-action"
-          >
-            Users
-          </Link>
         </div>
       </div>
     </>
